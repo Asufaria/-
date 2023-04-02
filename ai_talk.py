@@ -5,7 +5,7 @@ from linebot.models import TextSendMessage
 import os
 from dotenv import load_dotenv
 
-load_dotenv('.env')
+load_dotenv()
 OPENAI_API_KEY =  os.environ.get("OPENAI_API_KEY")
 LINE_CHANNEL_ACCESS_TOKEN = os.environ.get("LINE_CHANNEL_ACCESS_TOKEN")
 LINE_CHANNEL_SECRET = os.environ.get("LINE_CHANNEL_SECRET")
