@@ -6,9 +6,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-OPENAI_API_KEY =  os.environ.get("OPENAI_API_KEY", "default_value")
-LINE_CHANNEL_ACCESS_TOKEN = os.environ.get("LINE_CHANNEL_ACCESS_TOKEN", "default_value")
-LINE_CHANNEL_SECRET = os.environ.get("LINE_CHANNEL_SECRET", "default_value")
+OPENAI_API_KEY =  os.environ.get("OPENAI_API_KEY")
+LINE_CHANNEL_ACCESS_TOKEN = os.environ.get("LINE_CHANNEL_ACCESS_TOKEN")
+LINE_CHANNEL_SECRET = os.environ.get("LINE_CHANNEL_SECRET")
 
 
 OPENAI_CHARACTER_PROFILE = '''
@@ -71,7 +71,10 @@ async def ai_talk(request: Request):
         ai_message = response['choices'][0]['message']['content']
 
         # LINE メッセージの送信
-        line_bot_api.push_message(line_user_id, TextSendMessage(ai_message))
+        if line_bot_api:
+            line_bot_api.push_message(line_user_id, TextSendMessage(ai_message))
+        else:
+            print("Error: LINE bot API not found.")
 
     # LINE Webhook サーバーへ HTTP レスポンスを返す
     return 'ok'
