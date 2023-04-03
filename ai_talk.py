@@ -6,9 +6,10 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-OPENAI_API_KEY =  os.environ.get("OPENAI_API_KEY")
-LINE_CHANNEL_ACCESS_TOKEN = os.environ.get("LINE_CHANNEL_ACCESS_TOKEN")
-LINE_CHANNEL_SECRET = os.environ.get("LINE_CHANNEL_SECRET")
+OPENAI_API_KEY =  os.environ.get("OPENAI_API_KEY", "default_value")
+LINE_CHANNEL_ACCESS_TOKEN = os.environ.get("LINE_CHANNEL_ACCESS_TOKEN", "default_value")
+LINE_CHANNEL_SECRET = os.environ.get("LINE_CHANNEL_SECRET", "default_value")
+
 
 OPENAI_CHARACTER_PROFILE = '''
 これから会話を行います。以下の条件を絶対に守って回答してください。
